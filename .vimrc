@@ -3,7 +3,6 @@ filetype off
 filetype plugin indent on
 set number
 set relativenumber
-set hlsearch
 syntax on
 set tabstop=4
 set shiftwidth=4
@@ -11,12 +10,19 @@ set softtabstop=4
 set expandtab
 set nocompatible
 set modelines=0
+set autowrite
+set t_Co=256
+"colorscheme onehalflight
+colorscheme onehalfdark
 
-" escape shortcut
+" escape shortcuts
 inoremap jk <ESC>
+inoremap <F1> <ESC>
+nnoremap <F1> <ESC>
+vnoremap <F1> <ESC>
 
 " leader commads start with SPACEBAR
-let mapleader = " "
+let mapleader = ","
 
 " Language things
 set encoding=utf-8
@@ -30,5 +36,89 @@ else
   set clipboard=unnamedplus "Linux
 endif
 
+" Toggle Line Comment
+nnoremap ,c :call NERDComment(0,"toggle")<CR>
+vnoremap ,c :call NERDComment(0,"toggle")<CR>
+
 " Leader commands
+" Spellcheck on/off
 nnoremap <leader>s :set spell!
+" Clean out whitespace at end of line
+nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
+" Split window vertically
+nnoremap <leader>w <C-w>v<C-w>l
+" Window Navigation
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+" Open File Tree
+map <leader>t :NERDTreeToggle<cr>
+" Go on and build!
+map <leader>b :GoBuild<cr>
+" Test function under cursor
+map <leader>T :GoTestFunc<cr>
+
+set scrolloff=3
+set autoindent
+set showmode
+set showcmd
+set hidden
+set wildmenu
+set wildmode=list:longest
+"set cursorline
+set ttyfast
+set ruler
+set backspace=indent,eol,start
+set laststatus=2
+set undofile
+nnoremap / /\v
+vnoremap / /\v
+set ignorecase
+set smartcase
+set gdefault
+set incsearch
+set showmatch
+set hlsearch
+nnoremap <leader><space> :noh<cr>
+nnoremap <tab> %
+vnoremap <tab> %
+nnoremap ; :
+set wrap
+"set textwidth=79
+"set formatoptions=qrn1
+"set colorcolumn=85
+
+" NO ARROW KEYS ALLOWED
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+nnoremap j gj
+nnoremap k gk
+
+" Autosave on lose focus
+au FocusLost * :wa
+
+" No noise or flash for errors!
+set noerrorbells visualbell t_vb=
+autocmd GUIEnter * set visualbell t_vb=
+
+let g:colorscheme = "dark"
+
+function! ToggleDark()
+  if g:colorscheme == "dark"
+      colorscheme onehalflight
+      let g:colorscheme= "light"
+  else
+      colorscheme onehalfdark
+      let g:colorscheme= "dark"
+  endif
+endfunction
+
+nnoremap <leader>m :call ToggleDark()<CR>
+
