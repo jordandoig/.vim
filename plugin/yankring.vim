@@ -262,7 +262,8 @@ if !exists('g:yankring_paste_check_default_register')
 endif
 
 if !exists('g:yankring_replace_n_pkey')
-    let g:yankring_replace_n_pkey = '<C-P>'
+    "let g:yankring_replace_n_pkey = '<C-P>'
+    let g:yankring_replace_n_pkey = 'π'
 endif
 
 if !exists('g:yankring_replace_n_nkey')

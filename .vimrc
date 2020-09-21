@@ -1,6 +1,8 @@
+set nocompatible
 filetype off
 " call pathogen#runtime_append_all_bundles()
 filetype plugin indent on
+set title
 set number
 set relativenumber
 syntax on
@@ -8,7 +10,6 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set expandtab
-set nocompatible
 set modelines=0
 set autowrite
 set t_Co=256
@@ -27,7 +28,7 @@ let mapleader = ","
 " Language things
 set encoding=utf-8
 set spell spelllang=en_us
-set spell! 
+set spell!
 
 " Ensure proper clipboard, and avoid breaking commands
 if system('uname -s') == "Darwin\n"
@@ -84,10 +85,11 @@ nnoremap <leader><space> :noh<cr>
 nnoremap <tab> %
 vnoremap <tab> %
 nnoremap ; :
-set wrap
+set nowrap
 "set textwidth=79
 "set formatoptions=qrn1
 "set colorcolumn=85
+nmap <silent> ,/ :nohlsearch<CR>
 
 " NO ARROW KEYS ALLOWED
 nnoremap <up> <nop>
@@ -98,8 +100,16 @@ inoremap <up> <nop>
 inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
-nnoremap j gj
-nnoremap k gk
+
+"Line wrapping
+"set wrap
+"nnoremap j gj
+"nnoremap k gk
+
+"CtrlP Stuff
+nnoremap <leader>p <Plug>YankRing
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
 
 " Autosave on lose focus
 au FocusLost * :wa
